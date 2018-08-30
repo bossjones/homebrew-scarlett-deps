@@ -1,0 +1,14 @@
+---
+# SOURCE: https://github.com/geerlingguy/mac-dev-playbook/blob/df25444b3f08e1c5a2c7b941d0a49850514f9d98/.travis.yml
+sudo: required
+language: objective-c
+# 10.13 (see https://docs.travis-ci.com/user/osx-ci-environment/#OS-X-Version)
+osx_image: xcode9.3
+
+before_install:
+  - brew tap bossjones/scarlett-deps
+
+script:
+  - brew install --HEAD bossjones/scarlett-deps/cmu-sphinxbase
+  - brew install --HEAD bossjones/scarlett-deps/cmu-sphinxtrain
+  - brew install --HEAD bossjones/scarlett-deps/cmu-pocketsphinx
