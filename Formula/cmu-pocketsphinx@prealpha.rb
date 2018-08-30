@@ -15,6 +15,8 @@ class CmuPocketsphinxAT5prealpha < Formula
 
   head do
     url "https://github.com/cmusphinx/pocketsphinx.git"
+    branch "68ef5dc6d48d791a747026cd43cc6940a9e19f69"
+    # head "https://github.com/python/cpython.git", :branch => "2.7"
 
     depends_on "autoconf" => :build
     depends_on "automake" => :build
@@ -32,6 +34,13 @@ class CmuPocketsphinxAT5prealpha < Formula
   depends_on "bossjones/scarlett-deps/cmu-sphinxbase@prealpha"
 
   def install
+    # FIXME: Enable this??? 8/30/2018
+    # SOURCE: https://github.com/Homebrew/homebrew-core/blob/master/Formula/python@2.rb
+    # # Unset these so that installing pip and setuptools puts them where we want
+    # # and not into some other Python the user has installed.
+    # ENV["PYTHONHOME"] = nil
+    # ENV["PYTHONPATH"] = nil
+
     # INSPIRATION: https://github.com/Homebrew/homebrew-core/blob/master/Formula/ipython@5.rb#L146
     xy = Language::Python.major_minor_version "python"
     ENV.prepend_create_path "PYTHONPATH", libexec/"vendor/lib/python#{xy}/site-packages"
