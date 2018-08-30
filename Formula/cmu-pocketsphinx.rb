@@ -16,8 +16,6 @@ class CmuPocketsphinxAT5prealpha < Formula
     depends_on "automake" => :build
     depends_on "libtool" => :build
     depends_on "swig" => :build
-
-    # new
   end
 
   option "without-python", "Build without python 3 support"
