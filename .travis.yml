@@ -9,6 +9,6 @@ before_install:
   - brew tap bossjones/scarlett-deps
 
 script:
-  - brew install --HEAD bossjones/scarlett-deps/cmu-sphinxbase
-  - brew install --HEAD bossjones/scarlett-deps/cmu-sphinxtrain
+  - brew install --HEAD bossjones/scarlett-deps/cmu-sphinxbase@5prealpha
+  # - brew install --HEAD bossjones/scarlett-deps/cmu-sphinxtrain
   - brew install --HEAD bossjones/scarlett-deps/cmu-pocketsphinx
