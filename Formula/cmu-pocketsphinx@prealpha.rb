@@ -25,7 +25,7 @@ class CmuPocketsphinxAT5prealpha < Formula
   depends_on "python" => :recommended
   depends_on "pygobject3" if build.with? "python"
   depends_on "pkg-config" => :build
-  depends_on "bossjones/scarlett-deps/cmu-sphinxbase"
+  depends_on "bossjones/scarlett-deps/cmu-sphinxbase@prealpha"
 
   def install
     if build.with?("python") && build.with?("python@2")
