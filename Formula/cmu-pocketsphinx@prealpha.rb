@@ -7,6 +7,10 @@ class CmuPocketsphinxAT5prealpha < Formula
 
   # NOTE: https://github.com/Homebrew/brew/blob/master/docs/Building-Against-Non-Homebrew-Dependencies.md
   # If you wish to build against custom non-Homebrew dependencies that are provided by Homebrew (e.g. a non-Homebrew, non-macOS ruby) then you must create and maintain your own tap as these formulae will not be accepted in Homebrew/homebrew-core. Once you have done that you can specify env :std in the formula which will allow a e.g. which ruby to access your existing PATH variable and allow compilation to link against this Ruby.
+
+  # We only have special support for finding depends_on :python, but not yet for
+  # :ruby, :perl etc., so we use the standard environment that leaves the
+  # PATH as the user has set it right now.
   # env :std
 
   head do
@@ -28,6 +32,10 @@ class CmuPocketsphinxAT5prealpha < Formula
   depends_on "bossjones/scarlett-deps/cmu-sphinxbase@prealpha"
 
   def install
+    # INSPIRATION: https://github.com/Homebrew/homebrew-core/blob/master/Formula/ipython@5.rb#L146
+    xy = Language::Python.major_minor_version "python"
+    ENV.prepend_create_path "PYTHONPATH", libexec/"vendor/lib/python#{xy}/site-packages"
+
     if build.with?("python") && build.with?("python@2")
       # Upstream does not support having both Python2 and Python3 versions
       # of the plugin installed because apparently you can load only one
