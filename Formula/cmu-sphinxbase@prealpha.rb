@@ -9,6 +9,11 @@ class CmuSphinxbaseAT5prealpha < Formula
   depends_on "automake" => :build
   depends_on "libtool" => :build
 
+  # We only have special support for finding depends_on :python, but not yet for
+  # :ruby, :perl etc., so we use the standard environment that leaves the
+  # PATH as the user has set it right now.
+  # env :std
+
   # If these are found, they will be linked against and there is no configure
   # switch to turn them off.
   depends_on "libsndfile"
