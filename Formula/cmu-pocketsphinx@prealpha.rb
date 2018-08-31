@@ -32,6 +32,7 @@ class CmuPocketsphinxAT5prealpha < Formula
   depends_on "pygobject3" if build.with? "python"
   depends_on "pkg-config" => :build
   depends_on "bossjones/scarlett-deps/cmu-sphinxbase@prealpha"
+  depends_on "gstreamer"
 
   def install
     # FIXME: Enable this??? 8/30/2018
