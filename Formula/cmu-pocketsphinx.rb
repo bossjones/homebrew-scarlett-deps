@@ -58,6 +58,7 @@ class CmuPocketsphinx < Formula
   depends_on "gst-plugins-base"
   depends_on "gst-plugins-good"
   depends_on "pulseaudio"
+  depends_on "bossjones/scarlett-deps/cmu-sphinxbase"
 
   def install
 
