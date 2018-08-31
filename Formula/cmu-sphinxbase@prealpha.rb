@@ -30,7 +30,6 @@ class CmuSphinxbaseAT5prealpha < Formula
     url "https://github.com/cmusphinx/sphinxbase.git",
         :revision => "74370799d5b53afc5b5b94a22f5eff9cb9907b97"
     version "74370799d5b53afc5b5b94a22f5eff9cb9907b97"
-
   end
 
   # We only have special support for finding depends_on :python, but not yet for
@@ -62,6 +61,14 @@ class CmuSphinxbaseAT5prealpha < Formula
     # # and not into some other Python the user has installed.
     # ENV["PYTHONHOME"] = nil
     # ENV["PYTHONPATH"] = nil
+
+    # SOURCE: https://github.com/Homebrew/homebrew-core/blob/eced86fcce9e92b7d7e7d1a1cee960c994fab0cd/Formula/gstreamer.rb
+    # Look for plugins in HOMEBREW_PREFIX/lib/gstreamer-1.0 instead of
+    # HOMEBREW_PREFIX/Cellar/gstreamer/1.0/lib/gstreamer-1.0, so we'll find
+    # plugins installed by other packages without setting GST_PLUGIN_PATH in
+    # the environment.
+    inreplace "configure", 'PLUGINDIR="$full_var"',
+      "PLUGINDIR=\"#{HOMEBREW_PREFIX}/lib/gstreamer-1.0\""
 
     if build.with?("python") && build.with?("python@2")
       # Upstream does not support having both Python2 and Python3 versions
