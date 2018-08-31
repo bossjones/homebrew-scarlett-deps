@@ -86,11 +86,7 @@ class CmuPocketsphinx < Formula
     ENV["PYTHON"] = "python#{xy}"
     ENV["GST_PLUGIN_PATH"] = "#{HOMEBREW_PREFIX}/lib/gstreamer-1.0"
 
-    # ENV.prepend_path "LIBRARY_PATH", Formula["cmu-sphinxbase"].opt_lib
-    # ENV.prepend_path "CPATH", Formula["cmu-sphinxbase"].opt_include
-
     ENV.prepend_path "PKG_CONFIG_PATH", Formula["cmu-sphinxbase"].opt_lib/"/pkgconfig"
-    # ENV["CPATH"] = Formula["openssl"].opt_include
 
     # FIXME: Enable this??? 8/30/2018
     # SOURCE: https://github.com/Homebrew/homebrew-core/blob/master/Formula/python@2.rb
@@ -108,5 +104,9 @@ class CmuPocketsphinx < Formula
 
     system "./configure", *args
     system "make", "install"
+  end
+
+  test do
+    system "#{bin}/gst-inspect-1.0", "pocketsphinx"
   end
 end
