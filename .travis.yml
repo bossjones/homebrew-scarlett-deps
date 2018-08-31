@@ -5,10 +5,16 @@ language: objective-c
 # 10.13 (see https://docs.travis-ci.com/user/osx-ci-environment/#OS-X-Version)
 osx_image: xcode9.3
 
-before_install:
-  - brew tap bossjones/scarlett-deps
+# before_install:
+#   - brew tap bossjones/scarlett-deps
+
+# script:
+#   - brew install --HEAD bossjones/scarlett-deps/cmu-sphinxbase@5prealpha
+#   # - brew install --HEAD bossjones/scarlett-deps/cmu-sphinxtrain
+#   - brew install --HEAD bossjones/scarlett-deps/cmu-pocketsphinx@prealpha
+
 
 script:
-  - brew install --HEAD bossjones/scarlett-deps/cmu-sphinxbase
-  - brew install --HEAD bossjones/scarlett-deps/cmu-sphinxtrain
-  - brew install --HEAD bossjones/scarlett-deps/cmu-pocketsphinx
+  - brew install Formula/cmu-sphinxbase.rb
+  # - brew install --HEAD Formula/cmu-sphinxbase@5prealpha.rb
+  # - brew install --HEAD Formula/cmu-pocketsphinx@prealpha.rb
