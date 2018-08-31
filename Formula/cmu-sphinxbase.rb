@@ -56,6 +56,25 @@ class CmuSphinxbase < Formula
   depends_on "pulseaudio"
 
   def install
+
+    args = [
+      "--prefix=#{prefix}",
+      "--disable-debug",
+      "--disable-dependency-tracking",
+    ]
+
+    if build.with?("python@2") && build.with?("python")
+      odie "Options --with-python and --with-python@2 are mutually exclusive."
+    elsif build.with?("python@2")
+      args << "--with-python=#{Formula["python@2"].opt_bin}/python2"
+      ENV.append "CPPFLAGS", "-I#{Formula["python@2"].opt_libexec}"
+    elsif build.with?("python")
+      args << "--with-python=#{Formula["python"].opt_bin}/python3"
+      ENV.append "CPPFLAGS", "-I#{Formula["python"].opt_libexec}"
+    else
+      args << "--with-python=/usr"
+    end
+
     # FIXME: Enable this??? 8/30/2018
     # SOURCE: https://github.com/Homebrew/homebrew-core/blob/master/Formula/python@2.rb
     # # Unset these so that installing pip and setuptools puts them where we want
@@ -72,17 +91,8 @@ class CmuSphinxbase < Formula
     inreplace "configure", 'PLUGINDIR="$full_var"',
       "PLUGINDIR=\"#{HOMEBREW_PREFIX}/lib/gstreamer-1.0\""
 
-    if build.with?("python") && build.with?("python@2")
-      # Upstream does not support having both Python2 and Python3 versions
-      # of the plugin installed because apparently you can load only one
-      # per process, so GStreamer does not know which to load.
-      odie "You must pass both --without-python and --with-python@2 for python 2 support"
-    end
-
     system "./autogen.sh"
-    system "./configure", "--disable-debug",
-                          "--disable-dependency-tracking",
-                          "--prefix=#{prefix}"
+    system "./configure", *args
     system "make", "install"
   end
 end
