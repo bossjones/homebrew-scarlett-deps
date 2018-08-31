@@ -53,6 +53,7 @@ class CmuSphinxbase < Formula
   depends_on "gstreamer"
   depends_on "gst-plugins-base"
   depends_on "gst-plugins-good"
+  depends_on "pulseaudio"
 
   def install
     # FIXME: Enable this??? 8/30/2018
