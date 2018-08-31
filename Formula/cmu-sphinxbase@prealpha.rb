@@ -12,13 +12,25 @@ class CmuSphinxbaseAT5prealpha < Formula
 
   head do
     url "https://github.com/cmusphinx/sphinxbase.git"
-    branch "74370799d5b53afc5b5b94a22f5eff9cb9907b97"
+    # branch "74370799d5b53afc5b5b94a22f5eff9cb9907b97"
 
     depends_on "autoconf" => :build
     depends_on "automake" => :build
     depends_on "libtool" => :build
     depends_on "swig" => :build
     depends_on "pkg-config" => :build
+    depends_on "gstreamer" => :build
+    depends_on "gst-plugins-base" => :build
+    depends_on "gst-plugins-good" => :build
+  end
+
+
+  stable do
+    # the latest commit on the stable branch
+    url "https://github.com/cmusphinx/sphinxbase.git",
+        :revision => "74370799d5b53afc5b5b94a22f5eff9cb9907b97"
+    version "74370799d5b53afc5b5b94a22f5eff9cb9907b97"
+
   end
 
   # We only have special support for finding depends_on :python, but not yet for
@@ -37,7 +49,11 @@ class CmuSphinxbaseAT5prealpha < Formula
 
   depends_on "python@2" => :optional
   depends_on "python" => :recommended
-  depends_on "pygobject3" if build.with? "python"
+  # depends_on "pygobject3" if build.with? "python"
+
+  depends_on "gstreamer"
+  depends_on "gst-plugins-base"
+  depends_on "gst-plugins-good"
 
   def install
     # FIXME: Enable this??? 8/30/2018
