@@ -81,6 +81,7 @@ class CmuSphinxbase < Formula
     ENV.prepend_create_path "PYTHONPATH", libexec/"vendor/lib/python#{xy}/site-packages"
     ENV.prepend_path "PATH", Formula["python"].opt_libexec/"bin"
     ENV["PYTHON"] = "python#{xy}"
+    ENV["GST_PLUGIN_PATH"] = "#{HOMEBREW_PREFIX}/lib/gstreamer-1.0"
 
     # FIXME: Enable this??? 8/30/2018
     # SOURCE: https://github.com/Homebrew/homebrew-core/blob/master/Formula/python@2.rb
@@ -95,12 +96,9 @@ class CmuSphinxbase < Formula
     # HOMEBREW_PREFIX/Cellar/gstreamer/1.0/lib/gstreamer-1.0, so we'll find
     # plugins installed by other packages without setting GST_PLUGIN_PATH in
     # the environment.
-    ENV["GST_PLUGIN_PATH"] = "#{HOMEBREW_PREFIX}/lib/gstreamer-1.0"
 
-    inreplace "configure", 'PLUGINDIR="$full_var"',
-      "PLUGINDIR=\"#{HOMEBREW_PREFIX}/lib/gstreamer-1.0\""
-
-    system "./autogen.sh"
+    # inreplace "configure", 'PLUGINDIR="$full_var"',
+    #   "PLUGINDIR=\"#{HOMEBREW_PREFIX}/lib/gstreamer-1.0\""
     system "./configure", *args
     system "make", "install"
   end
