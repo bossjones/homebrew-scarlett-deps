@@ -1,7 +1,10 @@
 require "formula"
 
-class CmuSphinxbase < Formula
-  homepage "http://cmusphinx.sourceforge.net/"
+# INSPIRATION: https://github.com/Homebrew/homebrew-core/blob/master/Formula/ipython@5.rb
+class CmuPocketsphinx < Formula
+  desc "Lightweight speech recognition engine for mobile devices 5prealpha"
+  homepage "https://cmusphinx.sourceforge.io/"
+
   # NOTE: https://github.com/Homebrew/brew/blob/master/docs/Building-Against-Non-Homebrew-Dependencies.md
   # If you wish to build against custom non-Homebrew dependencies that are provided by Homebrew (e.g. a non-Homebrew, non-macOS ruby) then you must create and maintain your own tap as these formulae will not be accepted in Homebrew/homebrew-core. Once you have done that you can specify env :std in the formula which will allow a e.g. which ruby to access your existing PATH variable and allow compilation to link against this Ruby.
 
@@ -9,10 +12,9 @@ class CmuSphinxbase < Formula
   # :ruby, :perl etc., so we use the standard environment that leaves the
   # PATH as the user has set it right now.
   # env :std
-
   head do
-    url "https://github.com/cmusphinx/sphinxbase.git"
-    # branch "74370799d5b53afc5b5b94a22f5eff9cb9907b97"
+    url "https://github.com/cmusphinx/pocketsphinx.git"
+    # branch "68ef5dc6d48d791a747026cd43cc6940a9e19f69"
     depends_on "gstreamer" => :build
     depends_on "gst-plugins-base" => :build
     depends_on "gst-plugins-good" => :build
@@ -21,9 +23,9 @@ class CmuSphinxbase < Formula
 
   stable do
     # the latest commit on the stable branch
-    url "https://github.com/cmusphinx/sphinxbase.git",
-        :revision => "74370799d5b53afc5b5b94a22f5eff9cb9907b97"
-    version "74370799d5b53afc5b5b94a22f5eff9cb9907b97"
+    url "https://github.com/cmusphinx/pocketsphinx.git",
+        :revision => "68ef5dc6d48d791a747026cd43cc6940a9e19f69"
+    version "68ef5dc6d48d791a747026cd43cc6940a9e19f69"
   end
 
   # We only have special support for finding depends_on :python, but not yet for
