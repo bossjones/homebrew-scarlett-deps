@@ -77,6 +77,9 @@ class CmuSphinxbase < Formula
       args << "--with-python=/usr"
     end
 
+    xy = Language::Python.major_minor_version "python3"
+    ENV.prepend_create_path "PYTHONPATH", libexec/"vendor/lib/python#{xy}/site-packages"
+
     # FIXME: Enable this??? 8/30/2018
     # SOURCE: https://github.com/Homebrew/homebrew-core/blob/master/Formula/python@2.rb
     # # Unset these so that installing pip and setuptools puts them where we want
