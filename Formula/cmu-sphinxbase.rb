@@ -1,6 +1,6 @@
 require "formula"
 
-class CmuSphinxbaseATprealpha < Formula
+class CmuSphinxbase < Formula
   homepage "http://cmusphinx.sourceforge.net/"
   # NOTE: https://github.com/Homebrew/brew/blob/master/docs/Building-Against-Non-Homebrew-Dependencies.md
   # If you wish to build against custom non-Homebrew dependencies that are provided by Homebrew (e.g. a non-Homebrew, non-macOS ruby) then you must create and maintain your own tap as these formulae will not be accepted in Homebrew/homebrew-core. Once you have done that you can specify env :std in the formula which will allow a e.g. which ruby to access your existing PATH variable and allow compilation to link against this Ruby.
