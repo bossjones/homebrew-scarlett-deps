@@ -13,12 +13,6 @@ class CmuSphinxbase < Formula
   head do
     url "https://github.com/cmusphinx/sphinxbase.git"
     # branch "74370799d5b53afc5b5b94a22f5eff9cb9907b97"
-
-    depends_on "autoconf" => :build
-    depends_on "automake" => :build
-    depends_on "libtool" => :build
-    depends_on "swig" => :build
-    depends_on "pkg-config" => :build
     depends_on "gstreamer" => :build
     depends_on "gst-plugins-base" => :build
     depends_on "gst-plugins-good" => :build
@@ -36,6 +30,12 @@ class CmuSphinxbase < Formula
   # :ruby, :perl etc., so we use the standard environment that leaves the
   # PATH as the user has set it right now.
   # env :std
+
+  depends_on "pkg-config" => :build
+  depends_on "autoconf" => :build
+  depends_on "automake" => :build
+  depends_on "libtool" => :build
+  depends_on "swig" => :build
 
   # If these are found, they will be linked against and there is no configure
   # switch to turn them off.
@@ -62,6 +62,7 @@ class CmuSphinxbase < Formula
     # # and not into some other Python the user has installed.
     # ENV["PYTHONHOME"] = nil
     # ENV["PYTHONPATH"] = nil
+    system "./autogen.sh"
 
     # SOURCE: https://github.com/Homebrew/homebrew-core/blob/eced86fcce9e92b7d7e7d1a1cee960c994fab0cd/Formula/gstreamer.rb
     # Look for plugins in HOMEBREW_PREFIX/lib/gstreamer-1.0 instead of
