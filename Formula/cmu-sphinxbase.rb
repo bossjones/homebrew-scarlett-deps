@@ -42,6 +42,8 @@ class CmuSphinxbase < Formula
   depends_on "libsndfile"
   depends_on "libsamplerate" => "with-libsndfile"
   depends_on "swig"
+  depends_on "openal-soft"
+  # --with-portaudio --with-pulseaudio --with-fluid-synth
 
   option "without-python", "Build without python 3 support"
   option "with-python@2", "Build with python 2 support"
