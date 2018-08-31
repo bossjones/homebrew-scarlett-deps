@@ -45,9 +45,11 @@ class CmuSphinxbase < Formula
 
   option "without-python", "Build without python 3 support"
   option "with-python@2", "Build with python 2 support"
+  option "with-python", "Use the Homebrew version of Python; by default system Python is used"
+  option "with-python@2", "Use the Homebrew version of Python 2; by default system Python is used"
 
   depends_on "python@2" => :optional
-  depends_on "python" => :recommended
+  depends_on "python" => :optional
   # depends_on "pygobject3" if build.with? "python"
 
   depends_on "gstreamer"
