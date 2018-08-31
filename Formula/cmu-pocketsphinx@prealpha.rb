@@ -1,7 +1,7 @@
 require "formula"
 
 # INSPIRATION: https://github.com/Homebrew/homebrew-core/blob/master/Formula/ipython@5.rb
-class CmuPocketsphinxAT5prealpha < Formula
+class CmuPocketsphinxATprealpha < Formula
   desc "Lightweight speech recognition engine for mobile devices 5prealpha"
   homepage "https://cmusphinx.sourceforge.io/"
 
