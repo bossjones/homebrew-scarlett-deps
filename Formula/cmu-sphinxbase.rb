@@ -92,7 +92,7 @@ class CmuSphinxbase < Formula
 
     if build.devel?
       inreplace 'configure.ac' do |s|
-          s.gsub! /^.*(sdkparam=).*$/, "\\1'-sdk macosx10.13'"
+        s.gsub! /^.*(sdkparam=).*$/, "\\1'-sdk macosx10.13'"
       end
     end
 
