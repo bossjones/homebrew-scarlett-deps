@@ -83,6 +83,14 @@ class CmuSphinxbase < Formula
     ENV['PYTHON'] = "python#{xy}"
     ENV['GST_PLUGIN_PATH'] = "#{HOMEBREW_PREFIX}/lib/gstreamer-1.0"
 
+    # 		sdkparam=`xcodebuild -showsdks | awk '/^$/{p=0};p; /macOS SDKs:/{p=1}; /OS X SDKs:/{p=1}' | tail -1 | cut -f3`
+    # s.gsub! /^(CFLAGS)_PPC.*$/, "\\1 = #{ENV.cflags} -prebind"
+    if ENV.travis
+      inreplace 'configure.ac' do |s|
+        s.gsub! /^.*(sdkparam=).*$/, "\\1'-sdk macosx10.13'"
+      end
+    end
+
     # FIXME: Enable this??? 8/30/2018
     # SOURCE: https://github.com/Homebrew/homebrew-core/blob/master/Formula/python@2.rb
     # # Unset these so that installing pip and setuptools puts them where we want
