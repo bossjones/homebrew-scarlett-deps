@@ -30,10 +30,6 @@ class CmuSphinxbase < Formula
     url 'https://github.com/cmusphinx/sphinxbase.git',
         revision: '74370799d5b53afc5b5b94a22f5eff9cb9907b97'
     version '74370799d5b53afc5b5b94a22f5eff9cb9907b97'
-
-    inreplace 'configure.ac' do |s|
-        s.gsub! /^.*(sdkparam=).*$/, "\\1'-sdk macosx10.13'"
-    end
   end
 
   # We only have special support for finding depends_on :python, but not yet for
@@ -93,6 +89,13 @@ class CmuSphinxbase < Formula
     ENV.prepend_path 'PATH', Formula['python'].opt_libexec / 'bin'
     ENV['PYTHON'] = "python#{xy}"
     ENV['GST_PLUGIN_PATH'] = "#{HOMEBREW_PREFIX}/lib/gstreamer-1.0"
+
+
+    if build.devel?
+      inreplace 'configure.ac' do |s|
+          s.gsub! /^.*(sdkparam=).*$/, "\\1'-sdk macosx10.13'"
+      end
+    end
 
     # 		sdkparam=`xcodebuild -showsdks | awk '/^$/{p=0};p; /macOS SDKs:/{p=1}; /OS X SDKs:/{p=1}' | tail -1 | cut -f3`
     # s.gsub! /^(CFLAGS)_PPC.*$/, "\\1 = #{ENV.cflags} -prebind"
