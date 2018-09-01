@@ -1,5 +1,6 @@
 ---
 # SOURCE: https://github.com/geerlingguy/mac-dev-playbook/blob/df25444b3f08e1c5a2c7b941d0a49850514f9d98/.travis.yml
+os: osx
 sudo: required
 language: objective-c
 # 10.13 (see https://docs.travis-ci.com/user/osx-ci-environment/#OS-X-Version)
