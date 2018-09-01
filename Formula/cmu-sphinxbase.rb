@@ -25,6 +25,17 @@ class CmuSphinxbase < Formula
     version '74370799d5b53afc5b5b94a22f5eff9cb9907b97'
   end
 
+  devel do
+    # some other things...
+    url 'https://github.com/cmusphinx/sphinxbase.git',
+        revision: '74370799d5b53afc5b5b94a22f5eff9cb9907b97'
+    version '74370799d5b53afc5b5b94a22f5eff9cb9907b97'
+
+    inreplace 'configure.ac' do |s|
+        s.gsub! /^.*(sdkparam=).*$/, "\\1'-sdk macosx10.13'"
+    end
+  end
+
   # We only have special support for finding depends_on :python, but not yet for
   # :ruby, :perl etc., so we use the standard environment that leaves the
   # PATH as the user has set it right now.
@@ -85,11 +96,11 @@ class CmuSphinxbase < Formula
 
     # 		sdkparam=`xcodebuild -showsdks | awk '/^$/{p=0};p; /macOS SDKs:/{p=1}; /OS X SDKs:/{p=1}' | tail -1 | cut -f3`
     # s.gsub! /^(CFLAGS)_PPC.*$/, "\\1 = #{ENV.cflags} -prebind"
-    if ENV['travis']
-      inreplace 'configure.ac' do |s|
-        s.gsub! /^.*(sdkparam=).*$/, "\\1'-sdk macosx10.13'"
-      end
-    end
+    # if ENV['travis']
+    #   inreplace 'configure.ac' do |s|
+    #     s.gsub! /^.*(sdkparam=).*$/, "\\1'-sdk macosx10.13'"
+    #   end
+    # end
 
     # FIXME: Enable this??? 8/30/2018
     # SOURCE: https://github.com/Homebrew/homebrew-core/blob/master/Formula/python@2.rb
