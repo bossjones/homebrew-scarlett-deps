@@ -85,7 +85,7 @@ class CmuSphinxbase < Formula
 
     # 		sdkparam=`xcodebuild -showsdks | awk '/^$/{p=0};p; /macOS SDKs:/{p=1}; /OS X SDKs:/{p=1}' | tail -1 | cut -f3`
     # s.gsub! /^(CFLAGS)_PPC.*$/, "\\1 = #{ENV.cflags} -prebind"
-    if ENV.travis
+    if ENV['travis']
       inreplace 'configure.ac' do |s|
         s.gsub! /^.*(sdkparam=).*$/, "\\1'-sdk macosx10.13'"
       end
