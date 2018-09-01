@@ -8,6 +8,7 @@ osx_image: xcode9.3
 before_install:
   - brew tap bossjones/scarlett-deps
   - echo "xcodebuild -showsdks"; xcodebuild -showsdks
+  - echo "TRAVIS_XCODE_SDK"; env
   - xcodebuild -showsdks | awk '/^$/{p=0};p; /OS X SDKs:/{p=1}'
   - _SDKPARAM=`xcodebuild -showsdks | awk '/^$/{p=0};p; /OS X SDKs:/{p=1}' | tail -1 | cut -f3`; echo "_SDKPARAM - ${_SDKPARAM}"
 
