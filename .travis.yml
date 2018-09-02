@@ -91,7 +91,14 @@ matrix:
 
 # osx_image: xcode7.3	Xcode 7.3.1	7D1014	OS X 10.11	1.8.0_92-b14
 
+# SOURCE: https://github.com/xristoforaki/xplan/blob/da74e5ea1dde9988f6e4ccc90e319dbee6b08fd4/.travis.yml
+# install:
+#   # Install Apple's NullAudio device. Travis' VMs don't have any audio devices installed.
+#   - sudo xcodebuild -project BGMApp/BGMAppTests/NullAudio/AudioDriverExamples.xcodeproj -target NullAudio DSTROOT="/" install
+#   - sudo launchctl kickstart -kp system/com.apple.audio.coreaudiod || sudo killall coreaudiod
+
 before_install:
+  - xcodebuild -version
   - "if [ ! -z ${MY_HOMEBREW_UPDATE+x} ]; then brew update; fi"
   - travis_retry brew tap bossjones/scarlett-deps
   # - echo "xcodebuild -showsdks"; xcodebuild -showsdks
@@ -101,3 +108,7 @@ before_install:
 
 script:
   - brew install --verbose --with-python --devel bossjones/scarlett-deps/cmu-sphinxbase; brew install --verbose --with-python bossjones/scarlett-deps/cmu-pocketsphinx
+
+after_success:
+- "gst-inspect-1.0 pocketsphinx"
+- python ./test.py
