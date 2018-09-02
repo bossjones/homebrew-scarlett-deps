@@ -12,6 +12,13 @@
 #     - osx_image: xcode8
 
 
+# Reference:
+#   https://docs.travis-ci.com/user/reference/osx/
+#   https://docs.travis-ci.com/user/languages/objective-c/
+#   https://docs.travis-ci.com/user/build-stages/
+#   https://github.com/ReactiveCocoa/ReactiveSwift/blob/master/.travis.yml
+
+
 # --------------------------
 matrix:
   include:
@@ -31,6 +38,7 @@ matrix:
     language: objective-c
     osx_image: xcode8
     xcode_sdk: macosx10.11
+    env: MY_HOMEBREW_UPDATE="1"
 
 
   - name: "Sierra (10.12) and xcode8.3"
@@ -41,13 +49,13 @@ matrix:
     xcode_sdk: macosx10.12
 
 
-
   - name: "Sierra (10.12) and xcode9"
     os: osx
     sudo: required
     language: objective-c
     osx_image: xcode9
     xcode_sdk: macosx10.12
+    env: MY_HOMEBREW_UPDATE="1"
 
 
   - name: "Sierra (10.12) and xcode9.1"
@@ -84,7 +92,8 @@ matrix:
 # osx_image: xcode7.3	Xcode 7.3.1	7D1014	OS X 10.11	1.8.0_92-b14
 
 before_install:
-  - brew tap bossjones/scarlett-deps
+  - "if [ ! -z ${MY_HOMEBREW_UPDATE+x} ]; then brew update; fi"
+  - travis_retry brew tap bossjones/scarlett-deps
   # - echo "xcodebuild -showsdks"; xcodebuild -showsdks
   # - echo "TRAVIS_XCODE_SDK"; env
   # - xcodebuild -showsdks | awk '/^$/{p=0};p; /OS X SDKs:/{p=1}'
