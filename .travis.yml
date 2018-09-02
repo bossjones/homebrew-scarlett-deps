@@ -116,14 +116,14 @@ before_install:
   # - _SDKPARAM=`xcodebuild -showsdks | awk '/^$/{p=0};p; /OS X SDKs:/{p=1}' | tail -1 | cut -f3`; echo "_SDKPARAM - ${_SDKPARAM}"
 
 script:
+  - brew reinstall pyenv
+  - brew reinstall pyenv-virtualenv
+  - brew reinstall pyenv-virtualenvwrapper
+  - export PATH="$PYENV_ROOT/shims:$PYENV_ROOT/bin:$PATH"
+  - python -m ensurepip --user
+  - source ./pyenv_test.sh
   - brew install --verbose --with-python --devel bossjones/scarlett-deps/cmu-sphinxbase; brew install --verbose --with-python bossjones/scarlett-deps/cmu-pocketsphinx
 
 after_success:
-- brew reinstall pyenv
-- brew reinstall pyenv-virtualenv
-- brew reinstall pyenv-virtualenvwrapper
-- export PATH="$PYENV_ROOT/shims:$PYENV_ROOT/bin:$PATH"
-- python -m ensurepip --user
-- source ./pyenv_test.sh
 - "gst-inspect-1.0 pocketsphinx"
 - set -e python3 ./test.py
