@@ -115,6 +115,8 @@ before_install:
   - pyenv install 3.7.0
   - pyenv local 3.7.0
   - eval "$(pyenv init -)"
+  - brew reinstall pyenv-virtualenv
+  - brew reinstall pyenv-virtualenvwrapper
   - pyenv virtualenv --system-site-packages 3.7.0 scarlett-deps37
   # - python3 -m venv env
   - pyenv local --unset
