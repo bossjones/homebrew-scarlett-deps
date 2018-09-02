@@ -1,11 +1,78 @@
 ---
-# SOURCE: https://github.com/geerlingguy/mac-dev-playbook/blob/df25444b3f08e1c5a2c7b941d0a49850514f9d98/.travis.yml
-os: osx
-sudo: required
-language: objective-c
-# 10.13 (see https://docs.travis-ci.com/user/osx-ci-environment/#OS-X-Version)
-osx_image: xcode9.3
-xcode_sdk: macosx10.13
+
+# --------------------------
+matrix:
+  include:
+  - os: osx
+    sudo: required
+    language: objective-c
+    # 10.13 (see https://docs.travis-ci.com/user/osx-ci-environment/#OS-X-Version)
+    osx_image: xcode9.3
+    xcode_sdk: macosx10.13
+
+  - os: osx
+    sudo: required
+    language: objective-c
+    osx_image: xcode8
+    xcode_sdk: macosx10.11
+
+
+  - os: osx
+    sudo: required
+    language: objective-c
+    osx_image: xcode8.3
+    xcode_sdk: macosx10.12
+
+
+
+  - os: osx
+    sudo: required
+    language: objective-c
+    osx_image: xcode9
+    xcode_sdk: macosx10.12
+
+
+  - os: osx
+    sudo: required
+    language: objective-c
+    osx_image: xcode9.1
+    xcode_sdk: macosx10.12
+
+
+  - os: osx
+    sudo: required
+    language: objective-c
+    osx_image: xcode9.2
+    xcode_sdk: macosx10.12
+
+  - os: osx
+    sudo: required
+    language: objective-c
+    osx_image: xcode9.4
+    xcode_sdk: macosx10.13
+
+  # osx_image: xcode7.3	Xcode 7.3.1	7D1014	OS X 10.11	1.8.0_92-b14
+  # - os: osx
+  #   osx_image: xcode9.3
+  #   language: generic
+  #   python: 3.6
+  #   env: PS_BUILD_SOLVER="msat,z3,yices"       PS_BUILD_GMPY="FALSE"   TRAVIS_PYTHON_VERSION="3.6.5"
+  # - os: osx
+  #   osx_image: xcode9
+  #   language: generic
+  #   python: 3.6
+  #   env: PS_BUILD_SOLVER="None"      PS_BUILD_GMPY="FALSE"   PS_BUILD_CYTHON="TRUE"   TRAVIS_PYTHON_VERSION="3.6.5"
+# --------------------------
+
+
+# WORKING VERSION
+# # SOURCE: https://github.com/geerlingguy/mac-dev-playbook/blob/df25444b3f08e1c5a2c7b941d0a49850514f9d98/.travis.yml
+# os: osx
+# sudo: required
+# language: objective-c
+# # 10.13 (see https://docs.travis-ci.com/user/osx-ci-environment/#OS-X-Version)
+# osx_image: xcode9.3
+# xcode_sdk: macosx10.13
 
 # osx_image: xcode7.3	Xcode 7.3.1	7D1014	OS X 10.11	1.8.0_92-b14
 
@@ -17,6 +84,4 @@ before_install:
   # - _SDKPARAM=`xcodebuild -showsdks | awk '/^$/{p=0};p; /OS X SDKs:/{p=1}' | tail -1 | cut -f3`; echo "_SDKPARAM - ${_SDKPARAM}"
 
 script:
-  # - brew install --verbose --with-python --devel bossjones/scarlett-deps/cmu-sphinxbase
-  # - brew install --HEAD bossjones/scarlett-deps/cmu-sphinxtrain
   - brew install --verbose --with-python --devel bossjones/scarlett-deps/cmu-sphinxbase; brew install --verbose --with-python bossjones/scarlett-deps/cmu-pocketsphinx
