@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-env PYTHON_CONFIGURE_OPTS="--enable-shared" pyenv install 3.7.0
+# env PYTHON_CONFIGURE_OPTS="--enable-shared" pyenv install 3.7.0
 
 # pyenv virtualenv 3.7.0 scarlett-deps37
 

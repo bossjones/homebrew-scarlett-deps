@@ -6,9 +6,10 @@ cache:
 
 env:
   global:
-    - PYENV_ROOT="$HOME/.pyenv"
-    - PATH="$PYENV_ROOT/bin:$PYENV_ROOT/shims:$PATH"
-    - PYENV_VERSION=3.7.0
+    - PYTHON_CONFIGURE_OPTS="--enable-shared"
+    # - PYENV_ROOT="$HOME/.pyenv"
+    # - PATH="$PYENV_ROOT/bin:$PYENV_ROOT/shims:$PATH"
+    # - PYENV_VERSION=3.7.0
 
 # env:
 #   global:
@@ -107,6 +108,19 @@ matrix:
 #   - sudo launchctl kickstart -kp system/com.apple.audio.coreaudiod || sudo killall coreaudiod
 
 before_install:
+  # ---------------------
+  # SOURCE: https://github.com/Martiusweb/asynctest/blob/292e7519949901dfc49638cad2ff6c067e8a9dcb/.travis.yml
+  - brew update
+  - brew upgrade pyenv || brew install pyenv || true
+  - pyenv install 3.7.0
+  - pyenv local 3.7.0
+  - eval "$(pyenv init -)"
+  - pyenv virtualenv --system-site-packages 3.7.0 scarlett-deps37
+  # - python3 -m venv env
+  - pyenv local --unset
+  # - source env/bin/activate
+  - pyenv activate scarlett-deps37
+  # -----------------------
   - xcodebuild -version
   - "if [ ! -z ${MY_HOMEBREW_UPDATE+x} ]; then brew update; fi"
   - travis_retry brew tap bossjones/scarlett-deps
@@ -115,14 +129,20 @@ before_install:
   # - xcodebuild -showsdks | awk '/^$/{p=0};p; /OS X SDKs:/{p=1}'
   # - _SDKPARAM=`xcodebuild -showsdks | awk '/^$/{p=0};p; /OS X SDKs:/{p=1}' | tail -1 | cut -f3`; echo "_SDKPARAM - ${_SDKPARAM}"
 
+install:
+- curl https://bootstrap.pypa.io/get-pip.py | python
+- python -m pip install --upgrade wheel>=0.30.0 setuptools>=36.6.0
+
 script:
-  - brew reinstall pyenv
-  - brew reinstall pyenv-virtualenv
-  - brew reinstall pyenv-virtualenvwrapper
-  - export PATH="$PYENV_ROOT/shims:$PYENV_ROOT/bin:$PATH"
-  - python -m ensurepip --user
-  - source ./pyenv_test.sh
+  # - brew reinstall pyenv
+  # - brew reinstall pyenv-virtualenv
+  # - brew reinstall pyenv-virtualenvwrapper
+  # - export PATH="$PYENV_ROOT/shims:$PYENV_ROOT/bin:$PATH"
+  # - python -m ensurepip --user
+  # - source ./pyenv_test.sh
   - brew install --verbose --with-python --devel bossjones/scarlett-deps/cmu-sphinxbase; brew install --verbose --with-python bossjones/scarlett-deps/cmu-pocketsphinx
+  - env PKG_CONFIG_PATH="/usr/local/opt/libffi/lib/pkgconfig" pip install pygobject==3.28.3 ptpython black isort ipython pdbpp Pillow matplotlib numpy_ringbuffer MonkeyType
+  - export LD_LIBRARY_PATH=/usr/local/lib
 
 after_success:
 - "gst-inspect-1.0 pocketsphinx"
