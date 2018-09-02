@@ -115,17 +115,11 @@ before_install:
   - pyenv install 3.7.0
   - pyenv local 3.7.0
   - eval "$(pyenv init -)"
-  # - brew upgrade pyenv-virtualenv || brew install pyenv-virtualenv || true
-  # - brew upgrade pyenv-virtualenvwrapper || brew install pyenv-virtualenvwrapper || true
-  # - pyenv virtualenv --system-site-packages 3.7.0 scarlett-deps37
   - python3 -m venv env
   - pyenv local --unset
   - source env/bin/activate
-  # - eval "$(pyenv virtualenv-init -)";
-  # - pyenv activate scarlett-deps37
   # -----------------------
   - xcodebuild -version
-  # - "if [ ! -z ${MY_HOMEBREW_UPDATE+x} ]; then brew update; fi"
   - travis_retry brew tap bossjones/scarlett-deps
   # - echo "xcodebuild -showsdks"; xcodebuild -showsdks
   # - echo "TRAVIS_XCODE_SDK"; env
