@@ -89,8 +89,6 @@ matrix:
 # osx_image: xcode9.3
 # xcode_sdk: macosx10.13
 
-# osx_image: xcode7.3	Xcode 7.3.1	7D1014	OS X 10.11	1.8.0_92-b14
-
 # SOURCE: https://github.com/xristoforaki/xplan/blob/da74e5ea1dde9988f6e4ccc90e319dbee6b08fd4/.travis.yml
 # install:
 #   # Install Apple's NullAudio device. Travis' VMs don't have any audio devices installed.
@@ -111,4 +109,4 @@ script:
 
 after_success:
 - "gst-inspect-1.0 pocketsphinx"
-- python ./test.py
+- set -e python3 ./test.py
