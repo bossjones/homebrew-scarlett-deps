@@ -144,8 +144,8 @@ script:
   # - python -m ensurepip --user
   # - source ./pyenv_test.sh
   - brew install --verbose --with-python --devel bossjones/scarlett-deps/cmu-sphinxbase; brew install --verbose --with-python bossjones/scarlett-deps/cmu-pocketsphinx
-  - env PKG_CONFIG_PATH="/usr/local/opt/libffi/lib/pkgconfig" pip install pygobject==3.28.3 ptpython black isort ipython pdbpp Pillow matplotlib numpy_ringbuffer MonkeyType
   - export LD_LIBRARY_PATH=/usr/local/lib
+  - env PKG_CONFIG_PATH="/usr/local/opt/libffi/lib/pkgconfig" pip install pygobject==3.28.3 ptpython black isort ipython pdbpp Pillow matplotlib numpy_ringbuffer MonkeyType
 
 after_success:
 - "gst-inspect-1.0 pocketsphinx"
