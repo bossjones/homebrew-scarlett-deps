@@ -53,7 +53,6 @@ class CmuPocketsphinx < Formula
   depends_on 'python' => :optional
   # depends_on "pygobject3" if build.with? "python"
 
-  depends_on 'gobject-introspection' => :build
   depends_on 'openal-soft' => :build
   depends_on 'gstreamer' => :build
   depends_on 'gst-plugins-base' => :build

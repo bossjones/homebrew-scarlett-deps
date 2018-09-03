@@ -60,6 +60,7 @@ class CmuSphinxbase < Formula
   depends_on 'python' => :optional
   # depends_on "pygobject3" if build.with? "python"
 
+  depends_on 'gobject-introspection' => :build
   depends_on 'gstreamer'
   depends_on 'gst-plugins-base'
   depends_on 'gst-plugins-good'

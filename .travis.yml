@@ -44,6 +44,15 @@ matrix:
     xcode_sdk: macosx10.13
     # env: MY_RUBY_VERSION=""
 
+  # - name: "Test D-Feet High Sierra (10.13) and xcode9.3"
+  #   os: osx
+  #   sudo: required
+  #   language: objective-c
+  #   # 10.13 (see https://docs.travis-ci.com/user/osx-ci-environment/#OS-X-Version)
+  #   osx_image: xcode9.3
+  #   xcode_sdk: macosx10.13
+  #   env: TEST_D_FEET="1"
+
   - name: "OS X El Capitan (10.11) and xcode8"
     os: osx
     sudo: required
