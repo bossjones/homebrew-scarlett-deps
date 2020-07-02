@@ -9,7 +9,7 @@ env:
     - PYTHON_CONFIGURE_OPTS="--enable-shared"
     # - PYENV_ROOT="$HOME/.pyenv"
     # - PATH="$PYENV_ROOT/bin:$PYENV_ROOT/shims:$PATH"
-    # - PYENV_VERSION=3.7.0
+    # - PYENV_VERSION=3.7.7
 
 # env:
 #   global:
@@ -101,6 +101,13 @@ matrix:
     osx_image: xcode9.4
     xcode_sdk: macosx10.13
 
+  - name: "Mojave (10.14) and xcode10.0"
+    os: osx
+    sudo: required
+    language: objective-c
+    osx_image: xcode10
+    xcode_sdk: macosx10.14
+
 # WORKING VERSION
 # # SOURCE: https://github.com/geerlingguy/mac-dev-playbook/blob/df25444b3f08e1c5a2c7b941d0a49850514f9d98/.travis.yml
 # os: osx
@@ -121,8 +128,8 @@ before_install:
   # SOURCE: https://github.com/Martiusweb/asynctest/blob/292e7519949901dfc49638cad2ff6c067e8a9dcb/.travis.yml
   - brew update
   - brew upgrade pyenv || brew install pyenv || true
-  - pyenv install 3.7.0
-  - pyenv local 3.7.0
+  - pyenv install 3.7.7
+  - pyenv local 3.7.7
   - eval "$(pyenv init -)"
   - python3 -m venv env
   - pyenv local --unset
@@ -146,7 +153,7 @@ script:
   # - export PATH="$PYENV_ROOT/shims:$PYENV_ROOT/bin:$PATH"
   # - python -m ensurepip --user
   # - source ./pyenv_test.sh
-  - brew install --verbose --with-python --devel bossjones/scarlett-deps/cmu-sphinxbase; brew install --verbose --with-python bossjones/scarlett-deps/cmu-pocketsphinx
+  - brew install --verbose --with-python --with-sdk bossjones/scarlett-deps/cmu-sphinxbase; brew install --verbose --with-python bossjones/scarlett-deps/cmu-pocketsphinx
   - export LD_LIBRARY_PATH=/usr/local/lib
   - env PKG_CONFIG_PATH="/usr/local/opt/libffi/lib/pkgconfig" pip install pygobject==3.28.3 ptpython black isort ipython pdbpp Pillow matplotlib numpy_ringbuffer MonkeyType
 

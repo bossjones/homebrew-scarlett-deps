@@ -24,13 +24,6 @@ class DFeet < Formula
     version '0.3.10'
   end
 
-  devel do
-    # some other things...
-    url 'https://github.com/GNOME/d-feet',
-        revision: '0.3.10'
-    version '0.3.10'
-  end
-
   # We only have special support for finding depends_on :python, but not yet for
   # :ruby, :perl etc., so we use the standard environment that leaves the
   # PATH as the user has set it right now.
