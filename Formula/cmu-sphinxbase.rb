@@ -55,6 +55,7 @@ class CmuSphinxbase < Formula
   option 'with-python@2', 'Build with python 2 support'
   option 'with-python', 'Use the Homebrew version of Python; by default system Python is used'
   option 'with-python@2', 'Use the Homebrew version of Python 2; by default system Python is used'
+  option 'with-sdk', 'Replace the configure.ac file with proper Travis Xcode SDK'
 
   depends_on 'python@2' => :optional
   depends_on 'python' => :optional
@@ -91,11 +92,12 @@ class CmuSphinxbase < Formula
     ENV['PYTHON'] = "python#{xy}"
     ENV['GST_PLUGIN_PATH'] = "#{HOMEBREW_PREFIX}/lib/gstreamer-1.0"
 
-    if build.devel?
+    if  build.with? "with-sdk"
       inreplace 'configure.ac' do |s|
         s.gsub! /^.*(sdkparam=).*$/, "\\1'-sdk #{ENV['TRAVIS_XCODE_SDK']}'"
       end
     end
+
 
     # FIXME: Enable this??? 8/30/2018
     # SOURCE: https://github.com/Homebrew/homebrew-core/blob/master/Formula/python@2.rb
