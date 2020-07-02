@@ -48,6 +48,7 @@ class CmuPocketsphinx < Formula
   option 'with-python@2', 'Build with python 2 support'
   option 'with-python', 'Use the Homebrew version of Python; by default system Python is used'
   option 'with-python@2', 'Use the Homebrew version of Python 2; by default system Python is used'
+  option 'with-sdk', 'Replace the configure.ac file with proper Travis Xcode SDK'
 
   depends_on 'python@2' => :optional
   depends_on 'python' => :optional

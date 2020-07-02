@@ -53,13 +53,13 @@ matrix:
   #   xcode_sdk: macosx10.13
   #   env: TEST_D_FEET="1"
 
-  - name: "OS X El Capitan (10.11) and xcode8"
-    os: osx
-    sudo: required
-    language: objective-c
-    osx_image: xcode8
-    xcode_sdk: macosx10.11
-    env: MY_HOMEBREW_UPDATE="1"
+  # - name: "OS X El Capitan (10.11) and xcode8"
+  #   os: osx
+  #   sudo: required
+  #   language: objective-c
+  #   osx_image: xcode8
+  #   xcode_sdk: macosx10.11
+  #   env: MY_HOMEBREW_UPDATE="1"
 
 
   - name: "Sierra (10.12) and xcode8.3"
